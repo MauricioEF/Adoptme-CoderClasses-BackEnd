@@ -1,5 +1,5 @@
 const express = require('express');
-const hbs = require('express-handlebars');
+const {engine} = require('express-handlebars');
 const cors = require('cors');
 const app = express();
 const PORT = process.env.PORT || 8080;
