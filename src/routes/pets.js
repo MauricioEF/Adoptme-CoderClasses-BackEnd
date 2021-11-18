@@ -1,9 +1,8 @@
-const express = require('express');
+import express from 'express';
+import ContenedorAdopcion from '../classes/ContenedorAdopcion.js';
+import upload from '../services/uploader.js';
 const router = express.Router();
-const ContenedorAdopcion = require('../classes/ContenedorAdopcion');
-const upload = require('../services/uploader');
 const contenedor  = new ContenedorAdopcion();
-const server = require('../app');
 //GETS
 router.get('/',(req,res)=>{
     contenedor.getAllPets().then(result=>{
@@ -20,8 +19,7 @@ router.get('/:pid',(req,res)=>{
 router.post('/',upload.single('image'),(req,res)=>{
     let file = req.file;
     let pet = req.body;
-    console.log(server);
-    pet.thumbnail = req.protocol+"://"+req.hostname+":8080"+'/resources'+file.filename;
+    pet.thumbnail = req.protocol+"://"+req.hostname+":8080"+'/images/'+file.filename;
     contenedor.registerPet(pet).then(result=>{
         res.send(result);
     })
@@ -41,4 +39,4 @@ router.delete('/:pid',(req,res)=>{
         res.send(result)
     })
 })
-module.exports = router;
+export default router;

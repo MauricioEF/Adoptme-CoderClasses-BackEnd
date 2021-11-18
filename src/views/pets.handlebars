@@ -1,0 +1,12 @@
+<input type="button" onclick="location.href='/'" value="Registrar una mascota">
+
+<div class="pet-container">
+    {{#each pets}}
+    <div class="pet-card">
+        <p>{{this.name}}</p>
+        <p>{{this.specie}}</p>
+        <p>{{this.age}}</p>
+        <img src={{this.thumbnail}}>
+    </div>
+    {{/each}}
+</div>

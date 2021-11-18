@@ -1,6 +1,6 @@
-const express = require('express');
+import express from 'express';
+import ContenedorAdopcion from '../classes/ContenedorAdopcion.js';
 const router = express.Router();
-const ContenedorAdopcion = require('../classes/ContenedorAdopcion');
 const contenedor  = new ContenedorAdopcion();
 
 
@@ -48,4 +48,4 @@ router.delete('/:uid',(req,res)=>{
 })
 
 
-module.exports = router;
+export default router;

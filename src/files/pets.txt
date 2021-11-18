@@ -4,7 +4,23 @@
     "name": "orejas",
     "specie": "dog",
     "age": "2",
-    "thumbnail": "http://localhost:8080/resources1637187010762dog1.jpg",
+    "thumbnail": "http://localhost:8080/images/1637187010762dog1.jpg",
+    "adopted": false
+  },
+  {
+    "id": 2,
+    "name": "colita",
+    "specie": "cat",
+    "age": "3",
+    "thumbnail": "http://localhost:8080/images/1637193767165cat2.jpg",
+    "adopted": false
+  },
+  {
+    "id": 3,
+    "name": "patitas",
+    "specie": "horse",
+    "age": "5",
+    "thumbnail": "http://localhost:8080/images/1637195322149horse1.jpg",
     "adopted": false
   }
 ]

@@ -1,16 +1,22 @@
-const express = require('express');
-const {engine} = require('express-handlebars');
-const cors = require('cors');
+import express from 'express';
+import {engine} from 'express-handlebars';
+import cors from 'cors';
+import ContenedorAdopcion from './classes/ContenedorAdopcion.js';
+import petsRouter from './routes/pets.js';
+import usersRouter from './routes/users.js';
+import upload from './services/uploader.js';
 const app = express();
 const PORT = process.env.PORT || 8080;
-const ContenedorAdopcion = require ('./classes/ContenedorAdopcion');
 const contenedor = new ContenedorAdopcion();
-const petsRouter = require('./routes/pets');
-const usersRouter = require('./routes/users');
-const upload = require('./services/uploader');
+
 const server = app.listen(PORT,()=>{
     console.log("Listening on port: ",PORT)
 })
+
+app.engine('handlebars',engine())
+app.set('views','./views')
+app.set('view engine','handlebars')
+
 
 app.use(express.json());
 app.use(cors());
@@ -19,9 +25,10 @@ app.use((req,res,next)=>{
     console.log(new Date().toTimeString().split(" ")[0], req.method, req.url);
     next();
 })
-app.use('/resources',express.static('public'));
+app.use(express.static('public'));
 app.use('/api/pets',petsRouter);
 app.use('/api/users',usersRouter);
+
 
 
 app.post('/api/adoption',(req,res)=>{
@@ -45,4 +52,13 @@ app.post('/api/uploadfile',upload.fields([
         res.status(500).send({messsage:"No se subió archivo"})
     }
     res.send(files);
+})
+app.get('/view/pets',(req,res)=>{
+    contenedor.getAllPets().then(result=>{
+        let info = result.payload;
+        let preparedObject ={
+            pets : info
+        }
+        res.render('pets',preparedObject)
+    })
 })

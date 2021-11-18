@@ -1,4 +1,4 @@
-const fs = require('fs');
+import fs from 'fs';
 
 class ContenedorAdopcion{
     async registerPet(pet){
@@ -265,4 +265,4 @@ class ContenedorAdopcion{
     }
 }
 
-module.exports = ContenedorAdopcion;
+export default ContenedorAdopcion;
