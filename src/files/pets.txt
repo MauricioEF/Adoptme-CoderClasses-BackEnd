@@ -22,5 +22,61 @@
     "age": "5",
     "thumbnail": "http://localhost:8080/images/1637195322149horse1.jpg",
     "adopted": false
+  },
+  {
+    "id": 4,
+    "name": "Mascotita 1",
+    "specie": "rabbit",
+    "age": "2",
+    "thumbnail": "http://localhost:8080/images/1637970188054rabbit1.jpg",
+    "adopted": false
+  },
+  {
+    "id": 5,
+    "name": "asdasd",
+    "specie": "cat",
+    "age": "5",
+    "thumbnail": "http://localhost:8080/images/1637971975257cat2.jpg",
+    "adopted": false
+  },
+  {
+    "id": 6,
+    "name": "HUMBERTO",
+    "specie": "fish",
+    "age": "2",
+    "thumbnail": "http://localhost:8080/images/1637974907723fish1.jpg",
+    "adopted": false
+  },
+  {
+    "id": 7,
+    "name": "BOMBERTO",
+    "specie": "cat",
+    "age": "5",
+    "thumbnail": "http://localhost:8080/images/1637975566315cat1.jpg",
+    "adopted": false
+  },
+  {
+    "id": 8,
+    "name": "aaaa",
+    "specie": "cat",
+    "age": "2",
+    "thumbnail": "http://localhost:8080/images/1637975644684adoptmeIcon.png",
+    "adopted": false
+  },
+  {
+    "id": 9,
+    "name": "MASCOTA DEFINITIVA",
+    "specie": "rabbit",
+    "age": "123",
+    "thumbnail": "http://localhost:8080/images/1637975773384dog2.jpg",
+    "adopted": false
+  },
+  {
+    "id": 10,
+    "name": "MASCOTA BIEN PERO BIEN BONITA",
+    "specie": "fish",
+    "age": "5",
+    "thumbnail": "http://localhost:8080/images/1637975823961fish1.jpg",
+    "adopted": false
   }
 ]

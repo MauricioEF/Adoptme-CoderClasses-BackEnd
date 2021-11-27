@@ -1,6 +1,8 @@
 import express from 'express';
 import ContenedorAdopcion from '../classes/ContenedorAdopcion.js';
 import upload from '../services/uploader.js';
+import {io} from '../app.js';
+
 const router = express.Router();
 const contenedor  = new ContenedorAdopcion();
 //GETS
@@ -22,6 +24,12 @@ router.post('/',upload.single('image'),(req,res)=>{
     pet.thumbnail = req.protocol+"://"+req.hostname+":8080"+'/images/'+file.filename;
     contenedor.registerPet(pet).then(result=>{
         res.send(result);
+        if(result.status==="success"){
+            contenedor.getAllPets().then(result=>{
+                console.log(result);
+                io.emit('deliverPets',result);
+            })
+        }
     })
 })
 //PUTS

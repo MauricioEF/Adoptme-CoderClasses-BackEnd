@@ -6,7 +6,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js"
+        integrity="sha512-RNLkV3d+aLtfcpEyFG8jRbnWHxUqVZozacROI4J2F1sTaDqo1dPQYs01OMi1t1w9Y2FdbSCDSQ2ZVdAC8bzgAg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <title>Document</title>
 </head>
 
@@ -21,15 +25,15 @@
                     <label for="name">Nombre</label>
                 </div>
                 <div class="form-floating form-input">
-                        <select class="form-select" name="specie" id="specie">
-                            <option value="dog" label="Perro" selected></option>
-                            <option value="cat" label="Gato"></option>
-                            <option value="rabbit" label="Conejo"></option>
-                            <option value="horse" label="Caballo"></option>
-                            <option value="hamster" label="Hamster"></option>
-                            <option value="bird" label="Ave"></option>
-                            <option value="fish" label="Pez"></option>
-                        </select>
+                    <select class="form-select" name="specie" id="specie">
+                        <option value="dog" label="Perro" selected></option>
+                        <option value="cat" label="Gato"></option>
+                        <option value="rabbit" label="Conejo"></option>
+                        <option value="horse" label="Caballo"></option>
+                        <option value="hamster" label="Hamster"></option>
+                        <option value="bird" label="Ave"></option>
+                        <option value="fish" label="Pez"></option>
+                    </select>
                     <label for="specie">Especie</label>
                 </div>
                 <div class="form-floating form-input">
@@ -51,14 +55,25 @@
                 <div style="margin-top:30px; display:flex; justify-content: center;">
                     <input type="submit" class="submit-button">
                 </div>
-                
+
             </form>
+
+        </div>
+        <h1>TABLA DE MASCOTITAS EN TIEMPO REAL</h1>
+        <div>
+            <div id="petTable"></div>
         </div>
     </div>
+    <script src="/socket.io/socket.io.js"></script>
     <script src="index.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
+        integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 

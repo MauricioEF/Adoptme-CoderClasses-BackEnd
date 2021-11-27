@@ -1,3 +1,21 @@
+const socket = io();
+//---------------------------EVENTOS DE SOCKET --------------------------------------
+socket.on('deliverPets',data=>{
+    let pets = data.payload;
+    fetch('templates/petTable.handlebars').then(string=>string.text()).then(template=>{
+        const processedTemplate = Handlebars.compile(template);
+        const templateObject={
+            pets:pets
+        }
+        const html = processedTemplate(templateObject);
+        let div = document.getElementById('petTable');
+        div.innerHTML=html;
+    })
+})
+
+
+
+//-----------------------------FIN DE SOCKET ----------------------------------------------
 document.addEventListener('submit',enviarFormulario);
 
 function enviarFormulario(event){
@@ -16,7 +34,7 @@ function enviarFormulario(event){
             icon:'success',
             timer:2000,
         }).then(result=>{
-            location.href='/'
+            //location.href='/'
         })
     })
 }

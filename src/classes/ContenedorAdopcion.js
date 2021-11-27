@@ -1,16 +1,19 @@
 import fs from 'fs';
+import __dirname from '../utils.js';
+
+const petURL = __dirname+'/files/pets.txt';
 
 class ContenedorAdopcion{
     async registerPet(pet){
         try{
-            let data = await fs.promises.readFile('./files/pets.txt','utf-8');
+            let data = await fs.promises.readFile(petURL,'utf-8');
             let pets = JSON.parse(data);
             let id = pets[pets.length-1].id+1;
             pet.adopted=false;
             pet =Object.assign({id:id},pet);
             pets.push(pet)
             try{
-                await fs.promises.writeFile('./files/pets.txt',JSON.stringify(pets,null,2));
+                await fs.promises.writeFile(petURL,JSON.stringify(pets,null,2));
                 return {status:"success",message:"Mascota registrada"}
             }catch{
                 return {statis:"error",message:"No se pudo registrar a la mascota"} 
@@ -19,10 +22,11 @@ class ContenedorAdopcion{
             pet.adopted=false;
             pet = Object.assign({id:1},pet)
             try{
-                await fs.promises.writeFile('./files/pets.txt',JSON.stringify([pet],null,2));
+                await fs.promises.writeFile(petURL,JSON.stringify([pet],null,2));
                 return {status:"success", message:"Mascota registrada"}
             }
-            catch{
+            catch(error){
+                console.log(error);
                 return {status:"error",message:"No se pudo registrar a la mascota"}
             }
         }
@@ -55,7 +59,7 @@ class ContenedorAdopcion{
     }
     async getAllPets(){
         try{
-            let data = await fs.promises.readFile('./files/pets.txt','utf-8');
+            let data = await fs.promises.readFile(petURL,'utf-8');
             let pets = JSON.parse(data);
             return {status:"success",payload:pets}
         }catch{
@@ -73,7 +77,7 @@ class ContenedorAdopcion{
     }
     async getPetById(id){
         try{
-            let data = await fs.promises.readFile('./files/pets.txt','utf-8');
+            let data = await fs.promises.readFile(petURL,'utf-8');
             let pets = JSON.parse(data);
             let pet = pets.find(v => v.id===id)
             if(pet){
@@ -101,7 +105,7 @@ class ContenedorAdopcion{
     }
     async adoptPet(uid,pid){
         try{
-            let petData = await fs.promises.readFile('./files/pets.txt','utf-8');
+            let petData = await fs.promises.readFile(petURL,'utf-8');
             let userData = await fs.promises.readFile('./files/users.txt','utf-8');
             let pets = JSON.parse(petData);
             let users = JSON.parse(userData);
@@ -129,7 +133,7 @@ class ContenedorAdopcion{
                     return pt
                 }
             })
-            await fs.promises.writeFile('./files/pets.txt',JSON.stringify(petAux,null,2));
+            await fs.promises.writeFile(petURL,JSON.stringify(petAux,null,2));
             await fs.promises.writeFile('./files/users.txt',JSON.stringify(userAux,null,2));
             return {status:"success",message:"¡Mascota adoptada! Felicidades"}
         }catch(error){
@@ -169,7 +173,7 @@ class ContenedorAdopcion{
     }
     async updatePet(id,body){
         try{
-            let data = await fs.promises.readFile('./files/pets.txt','utf-8');
+            let data = await fs.promises.readFile(petURL,'utf-8');
             let pets = JSON.parse(data);
             if(!pets.some(pt=>pt.id===id)) return {status:"error", message:"No hay mascotas con el id especificado"}
             let result = pets.map(pet=>{
@@ -189,7 +193,7 @@ class ContenedorAdopcion{
                 }
             })
             try{
-                await fs.promises.writeFile('./files/pets.txt',JSON.stringify(result,null,2));
+                await fs.promises.writeFile(petURL,JSON.stringify(result,null,2));
                 return {status:"success", message:"Mascota actualizada"}
             }catch{
                 return {status:"error", message:"Error al actualizar la mascota"}
@@ -200,7 +204,7 @@ class ContenedorAdopcion{
     }
     async deletePet(id){
         try{
-            let data = await fs.promises.readFile('./files/pets.txt','utf-8');
+            let data = await fs.promises.readFile(petURL,'utf-8');
             let pets = JSON.parse(data);
             if(!pets.some(pet=>pet.id===id)) return {status:"error", message:"No hay mascota con el id especificado"}
             let pet = pets.find(v=>v.id===id);
@@ -221,7 +225,7 @@ class ContenedorAdopcion{
             }
             let aux = pets.filter(pet=>pet.id!==id);
             try{
-                await fs.promises.writeFile('./files/pets.txt',JSON.stringify(aux,null,2));
+                await fs.promises.writeFile(petURL,JSON.stringify(aux,null,2));
                 return {status:"success",message:"Mascota eliminada"}
             }catch{
                 return {status:"error", message:"No se pudo eliminar la mascota"}
@@ -238,7 +242,7 @@ class ContenedorAdopcion{
             let user = users.find(us=>us.id===id);
             if(user.hasPet){
                 try{
-                    let petData = await fs.promises.readFile('./files/pets.txt','utf-8');
+                    let petData = await fs.promises.readFile(petURL,'utf-8');
                     let pets = JSON.parse(petData);
                     pets.forEach(pet=>{
                         if(pet.owner===id){
@@ -246,7 +250,7 @@ class ContenedorAdopcion{
                             delete pet['owner']
                         }
                     })
-                    await fs.promises.writeFile('./files/pets.txt',JSON.stringify(pets,null,2));
+                    await fs.promises.writeFile(petURL,JSON.stringify(pets,null,2));
                 }catch{
                     return {status:"error", message:"fallo al eliminar el usuario"}
                 }
