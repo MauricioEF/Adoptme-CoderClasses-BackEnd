@@ -1,8 +1,10 @@
 import express from 'express';
 import ContenedorAdopcion from '../classes/ContenedorAdopcion.js';
+import Users from '../services/Users.js';
+
 const router = express.Router();
 const contenedor  = new ContenedorAdopcion();
-
+const usersService = new Users();
 
 
 router.use((req,res,next)=>{
@@ -13,21 +15,21 @@ router.use((req,res,next)=>{
 })
 //GETS
 router.get('/',(req,res)=>{
-    contenedor.getAllUsers().then(result=>{
+    usersService.getUsers().then(result=>{
         res.send(result);
     })
 })
 router.get('/:uid',(req,res)=>{
     let id= parseInt(req.params.uid);
-    contenedor.getUserById(id).then(result=>{
+    usersService.getUserById(id).then(result=>{
         res.send(result);
     })
 })
 //POSTS
 router.post('/',(req,res)=>{
     let user = req.body;
-    console.log(user);
-    contenedor.registerUser(user).then(result=>{
+    if(!user.first_name) return res.send({status:"error",message:"datos incompletos"})
+    usersService.registerUser(user).then(result=>{
         res.send(result);
     })
 })
